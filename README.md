@@ -1,31 +1,31 @@
-# open-kimi-ppt-skills
+# open-K-ppt-skills
 
 [简体中文](README.md) | [English](README_EN.md)
 
-[![npm version](https://img.shields.io/npm/v/open-kimi-ppt-skills)](https://www.npmjs.com/package/open-kimi-ppt-skills)
+[![npm version](https://img.shields.io/npm/v/open-K-ppt-skills)](https://www.npmjs.com/package/open-K-ppt-skills)
 [![node](https://img.shields.io/badge/node-%3E%3D18-brightgreen)](https://nodejs.org)
 
-逆向 Kimi Slides 实现的非官方演示文稿 Skill：让 AI Coding Agent 能够创建、编辑、复刻、读取并导出 PPT/PPTX。**每次生成默认同时交付两份成果：可继续编辑的 PPTD 项目和开箱即用的 PPTX 成品**（自动嵌入字体、写入淡入淡出翻页切换），支持页内元素动画与[预设主题](theme.md)，并提供本地在线 PPTD 编辑器随时手动导出。支持 Codex、Claude Code、Cursor、WorkBuddy 等任何兼容 SKILL.md 规范的 Agent。
+逆向 K Slides 实现的非官方演示文稿 Skill：让 AI Coding Agent 能够创建、编辑、复刻、读取并导出 PPT/PPTX。**每次生成默认同时交付两份成果：可继续编辑的 PPTD 项目和开箱即用的 PPTX 成品**（自动嵌入字体、写入淡入淡出翻页切换），支持页内元素动画与[预设主题](theme.md)，并提供本地在线 PPTD 编辑器随时手动导出。支持 Codex、Claude Code、Cursor、WorkBuddy 等任何兼容 SKILL.md 规范的 Agent。
 
 > [!IMPORTANT]
-> 本项目通过逆向分析 Kimi Slides Skill、PPTD 格式以及公开网页编辑器的前端行为与通信协议实现，并非 Kimi 或 Moonshot AI 的官方项目，也未获得其认可或支持。项目依赖的公开前端资源和兼容协议可能随 Kimi 更新而失效，仅供学习与研究使用。
+> 本项目通过逆向分析 K Slides Skill、PPTD 格式以及公开网页编辑器的前端行为与通信协议实现，并非 K 或 Moonshot AI 的官方项目，也未获得其认可或支持。项目依赖的公开前端资源和兼容协议可能随 K 更新而失效，仅供学习与研究使用。
 
 ## 安装
 
 需要 Node.js 18 或更高版本。
 
-**二选一即可，不要两种都做**，否则容易装到多个目录、反复安装。默认会装到跨 Agent 通用目录 `~/.agents/skills/open-kimi-ppt`（Windows 为 `%USERPROFILE%\.agents\skills\open-kimi-ppt`）；多数支持该目录的 Agent 装一次就能用。
+**二选一即可，不要两种都做**，否则容易装到多个目录、反复安装。默认会装到跨 Agent 通用目录 `~/.agents/skills/open-K-ppt`（Windows 为 `%USERPROFILE%\.agents\skills\open-K-ppt`）；多数支持该目录的 Agent 装一次就能用。
 
 ### 方式一：自动安装（推荐）
 
 直接对 AI 说下面任意一句，让 Agent 帮你装：
 
 ```text
-帮我从 github 安装 open-kimi-ppt skills
+帮我从 github 安装 open-K-ppt skills
 ```
 
 ```text
-帮我安装 https://github.com/Binaryify/open-kimi-ppt-skill
+帮我安装 https://github.com/Binaryify/open-K-ppt-skill
 ```
 
 装完后一般无需再手动执行 `npx ... install`。
@@ -35,23 +35,23 @@
 自己在终端执行：
 
 ```bash
-npx open-kimi-ppt-skills install
+npx open-K-ppt-skills install
 ```
 
 仅当你的 Agent **不识别** `~/.agents/skills`、必须装到专属目录时，才加 `--target`（以下为 macOS / Linux；Windows 将 `~` 换成 `%USERPROFILE%`，例如 `%USERPROFILE%\.codex\skills`）：
 
 ```bash
 # Codex
-npx open-kimi-ppt-skills install --target ~/.codex/skills
+npx open-K-ppt-skills install --target ~/.codex/skills
 
 # Claude Code
-npx open-kimi-ppt-skills install --target ~/.claude/skills
+npx open-K-ppt-skills install --target ~/.claude/skills
 
 # Cursor
-npx open-kimi-ppt-skills install --target ~/.cursor/skills
+npx open-K-ppt-skills install --target ~/.cursor/skills
 
 # WorkBuddy
-npx open-kimi-ppt-skills install --target ~/.workbuddy/skills
+npx open-K-ppt-skills install --target ~/.workbuddy/skills
 ```
 
 > 不要默认对每个 Agent 各装一遍。先用默认目录；确认某个 Agent 发现不了 Skill 时，再对该 Agent 使用 `--target`。
@@ -61,16 +61,16 @@ npx open-kimi-ppt-skills install --target ~/.workbuddy/skills
 Skill 有更新时，再执行一次安装即可（会直接覆盖本地已安装版本）：
 
 ```bash
-npx open-kimi-ppt-skills@latest install
+npx open-K-ppt-skills@latest install
 ```
 
 若当初用过 `--target`，更新时带上相同路径：
 
 ```bash
-npx open-kimi-ppt-skills@latest install --target ~/.claude/skills
+npx open-K-ppt-skills@latest install --target ~/.claude/skills
 ```
 
-也可以对 AI 说：`帮我更新 open-kimi-ppt skill`。更新只替换 Skill 文件，不会影响已生成的 PPTD / PPTX 项目。
+也可以对 AI 说：`帮我更新 open-K-ppt skill`。更新只替换 Skill 文件，不会影响已生成的 PPTD / PPTX 项目。
 
 ## 使用
 
@@ -85,7 +85,7 @@ npx open-kimi-ppt-skills@latest install --target ~/.claude/skills
 **示例 1：小米 YU7（约 8 页，图片作背景）**
 
 ```text
-使用 open-kimi-ppt 做一个介绍小米 yu7的 PPT,要求图片做背景,素材从网上找,8 页左右
+使用 open-K-ppt 做一个介绍小米 yu7的 PPT,要求图片做背景,素材从网上找,8 页左右
 ```
 
 | 在线编辑 PPTD | 导出 PPTX |
@@ -97,7 +97,7 @@ npx open-kimi-ppt-skills@latest install --target ~/.claude/skills
 **示例 2：DJI Pocket 4（图片作背景）**
 
 ```text
-使用 open-kimi-ppt 帮我生成DJI Pocket4 的 PPT,要求图片做背景,素材从网上找
+使用 open-K-ppt 帮我生成DJI Pocket4 的 PPT,要求图片做背景,素材从网上找
 ```
 
 | 在线编辑 PPTD | 导出 PPTX |
@@ -107,7 +107,7 @@ npx open-kimi-ppt-skills@latest install --target ~/.claude/skills
 **示例 3：iPhone 17 Pro（约 8 页）**
 
 ```text
-使用 open-kimi-ppt 制作 iPhone 17 Pro 介绍 PPT
+使用 open-K-ppt 制作 iPhone 17 Pro 介绍 PPT
 ```
 
 [![iPhone 17 Pro](docs/images/example-iphone-17pro.png)](docs/images/example-iphone-17pro.png)
@@ -115,34 +115,34 @@ npx open-kimi-ppt-skills@latest install --target ~/.claude/skills
 **示例 4：带页内元素动画（现场演示）**
 
 ```text
-使用 open-kimi-ppt 做一个介绍小米 yu7的 PPT,要求图片做背景,素材从网上找,8 页左右
+使用 open-K-ppt 做一个介绍小米 yu7的 PPT,要求图片做背景,素材从网上找,8 页左右
 要求带元素入场动画
 ```
 
-成品示例见 [example/xiaomi-yu7-ppt-animation](example/xiaomi-yu7-ppt-animation)（含 PPTD 项目与 PPTX，可用 `npx open-kimi-ppt-skills serve` 打开预览动画）。
+成品示例见 [example/xiaomi-yu7-ppt-animation](example/xiaomi-yu7-ppt-animation)（含 PPTD 项目与 PPTX，可用 `npx open-K-ppt-skills serve` 打开预览动画）。
 
 ### 在线编辑与手动导出
 
 建议直接让 AI 启动本地编辑器，例如说：
 
 ```text
-帮我执行 npx open-kimi-ppt-skills serve
+帮我执行 npx open-K-ppt-skills serve
 ```
 
 也可以自己在终端运行：
 
 ```bash
-npx open-kimi-ppt-skills serve
+npx open-K-ppt-skills serve
 ```
 
 然后打开 <http://127.0.0.1:55173/>，选择包含 `.pptd` 清单、`pages/` 和 `media/` 的完整项目文件夹，即可在浏览器中查看、编辑项目并导出 PPTX。仓库自带的 [example/dji-pocket4](example/dji-pocket4) 是一个完整的 18 页示例项目，可直接打开体验。
 
 ```bash
 # 启动后自动打开浏览器
-npx open-kimi-ppt-skills serve --open
+npx open-K-ppt-skills serve --open
 
 # 使用其他端口
-npx open-kimi-ppt-skills serve --port 56000
+npx open-K-ppt-skills serve --port 56000
 ```
 
 可写目录需要使用支持 File System Access API 的 Chromium 系浏览器；其他浏览器会回退为只读文件夹上传。按 `Ctrl+C` 停止服务。
@@ -159,11 +159,11 @@ npx open-kimi-ppt-skills serve --port 56000
 - **格式互转**：将现有 PPTX 转换为 PPTD 后继续修改。
 - **安全可控**：本地编辑仅在用户明确授权的项目目录内读写文件。
 
-## 为什么选 open-kimi-ppt
+## 为什么选 open-K-ppt
 
-常见 PPT Skill 大致分三类：用代码库直接拼 OOXML / pptxgenjs、整页生成图片再塞进 PPTX、或输出网页 HTML 翻页。open-kimi-ppt 走的是 **PPTD 中间层 + 真实可编辑 PPTX** 路线，兼顾 Agent 好写、人好看、PowerPoint 能改。
+常见 PPT Skill 大致分三类：用代码库直接拼 OOXML / pptxgenjs、整页生成图片再塞进 PPTX、或输出网页 HTML 翻页。open-K-ppt 走的是 **PPTD 中间层 + 真实可编辑 PPTX** 路线，兼顾 Agent 好写、人好看、PowerPoint 能改。
 
-| | open-kimi-ppt | 代码拼 PPTX（如 pptxgenjs） | 整页图片 PPT | 网页 HTML PPT |
+| | open-K-ppt | 代码拼 PPTX（如 pptxgenjs） | 整页图片 PPT | 网页 HTML PPT |
 | --- | --- | --- | --- | --- |
 | 交付物 | PPTD 项目 + PPTX | 多为仅 PPTX | 多为仅 PPTX | 单文件 HTML |
 | Agent 友好度 | YAML 逐页描述，结构清晰 | 坐标/API 细节多，易排版翻车 | 依赖出图模型与提示词 | HTML/CSS 模板约束强 |
@@ -180,7 +180,7 @@ npx open-kimi-ppt-skills serve --port 56000
 4. **PPTX 真能改**：导出后文本框、形状仍可在 PowerPoint / WPS 里编辑，不像图片型 PPT 只能当海报。
 5. **有本地可视化编辑器**：浏览器里预览、微调、配切换动画并手动再导出，不需要每次都让 Agent 重跑全流程。
 6. **导出前强制视觉质检**：整页截图 + 总览图检查遮挡、出界、对比度、溢出等问题，修完再出 PPTX。
-7. **不绑官方模型，成本更低**：相对官方 Kimi Slides，你可以在任意兼容 Agent 里使用 DeepSeek 等低成本模型；即便模型不支持多模态，只要按 PPTD 规范生成，也能做出不错的成品（有多模态时再做视觉质检会更稳）。
+7. **不绑官方模型，成本更低**：相对官方 K Slides，你可以在任意兼容 Agent 里使用 DeepSeek 等低成本模型；即便模型不支持多模态，只要按 PPTD 规范生成，也能做出不错的成品（有多模态时再做视觉质检会更稳）。
 
 [![DeepSeek 生成 Liquid Glass 风格 PPT](docs/images/example-deepseek-liquid-glass.png)](docs/images/example-deepseek-liquid-glass.png)
 
@@ -219,7 +219,7 @@ npx open-kimi-ppt-skills serve --port 56000
 
 ## 什么是 PPTD
 
-PPTD 是一种基于 YAML 的演示文稿 DSL，是 OOXML 之上的简化抽象层：保留主题、页面布局、元素位置等核心信息，去除了 Master 等复杂嵌套，每页自包含、所见即所得。完整的格式定义见 [reference/pptd.md](skills/open-kimi-ppt/reference/pptd.md)。
+PPTD 是一种基于 YAML 的演示文稿 DSL，是 OOXML 之上的简化抽象层：保留主题、页面布局、元素位置等核心信息，去除了 Master 等复杂嵌套，每页自包含、所见即所得。完整的格式定义见 [reference/pptd.md](skills/open-K-ppt/reference/pptd.md)。
 
 一个完整的 PPTD 项目目录结构如下：
 
@@ -236,12 +236,12 @@ deck/
 - CLI 只在 `127.0.0.1` 启动静态文件服务，不会监听局域网地址。
 - 浏览器只在用户主动授权后读取完整 PPTD 项目目录。
 - 保存回调只允许修改 `.pptd` 和 `.page` 文件，并拒绝绝对路径与 `..` 路径越界。
-- PPTD 内容由本地宿主交给公开的 Kimi 网页编辑器处理；远程图片、字体和编辑器资源仍可能从对应服务器加载。
-- 本项目不会提供或注入 Kimi 登录令牌，也不会访问用户的 Kimi 私有文稿。
+- PPTD 内容由本地宿主交给公开的 K 网页编辑器处理；远程图片、字体和编辑器资源仍可能从对应服务器加载。
+- 本项目不会提供或注入 K 登录令牌，也不会访问用户的 K 私有文稿。
 
 ## 兼容性说明
 
-这是针对当前公开实现的兼容宿主，不是稳定的官方 SDK。Kimi 更新前端资源哈希、PPTD 格式或 iframe/RPC 协议后，本项目可能需要同步升级。成功生成 PPTX 也不代表 PowerPoint、WPS 和 Keynote 对所有动画效果都能完全一致地播放。
+这是针对当前公开实现的兼容宿主，不是稳定的官方 SDK。K 更新前端资源哈希、PPTD 格式或 iframe/RPC 协议后，本项目可能需要同步升级。成功生成 PPTX 也不代表 PowerPoint、WPS 和 Keynote 对所有动画效果都能完全一致地播放。
 
 ## 本地开发
 
@@ -253,4 +253,4 @@ npm run pack:check
 
 ## 声明
 
-Kimi、Kimi Slides 及相关商标归其权利人所有。
+K、K Slides 及相关商标归其权利人所有。
